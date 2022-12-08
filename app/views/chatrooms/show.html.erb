@@ -5,5 +5,33 @@
   <%= @chatroom.name %>
 </p>
 
+
+<div class="comments" data-behavior='messages'>
+  <% @messages.each do |message| %>
+    <div><strong><%= message.user.username %></strong><%= message.body %></div>
+  <% end %>
+</div>
+
+  <%# <%= form_for [@chatroom, Message.new], remote: true do |form| %> %>
+  <%# <%= form_with(model: @messages, url: chatroom_messages_path(@chatroom), local: false)do |form| %> %>
+  <%= form_for [@chatroom, Message.new] do |form| %>
+    <div id="comment_content">
+      <%= form.text_area :body, rows: 1, class: "form-control" ,autofocus: true %>
+    </div>
+    
+    <%= form.submit %>
+  
+  <% end %>
+
+
+
+
+
+
+
+
+
+
+
 <%= link_to 'Edit', edit_chatroom_path(@chatroom) %> |
 <%= link_to 'Back', chatrooms_path %>
