@@ -11,6 +11,31 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= link_to "sign up" , new_user_registration_path %>
+    <%= link_to "sign in" , new_user_session_path %>
+    <%= link_to "sign out" , destroy_user_session_path, method:"delete" %>
+
+  
+
+
+    <div class="fluid-container">
+      <div class="row">
+        <div class="col-sm-2">
+            <% if user_signed_in? %>
+              <h5 class="text-danger">chatroomYOOOO</h5>
+              <ul>
+                  <p>123</p>
+                <% current_user.chatrooms.each do |chatroom| %>
+                  <%= link_to chatroom.name ,"#" %>
+                <%end%>
+              </ul>
+            <% end %>
+        </div>
+        <div class="col-sm-2">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    
   </body>
 </html>
